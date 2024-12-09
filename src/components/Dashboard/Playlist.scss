@@ -1,0 +1,67 @@
+@use "@/styles/var.scss";
+.playlist {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    border-radius: 7.5px;
+    flex: 2;
+    position: relative;
+    height: auto;
+    overflow: hidden;
+    padding-bottom: 25px;
+    border: 1px solid var.$stroke;
+    .playlist-name {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid var.$stroke;
+        padding: 12.5px 15px;
+        max-height: 50px;
+        flex: 1;
+    }
+}
+.remove {
+    width: 20px;
+    height: 20px;
+    background-color: var.$grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: 1px solid var.$stroke;
+    justify-self: end;
+}
+.songs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: scroll;
+    padding-top: 10px;
+    .song {
+        display: flex;
+        padding: 5px 25px;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        .song-title {
+                
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .song-author {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .right {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .preview {
+            height: 50px;
+            width: 50px;
+            border-radius: 7.5px;
+        }
+    }
+}

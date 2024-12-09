@@ -1,0 +1,117 @@
+@use "@/styles/var.scss";
+.container {
+    display: flex;
+    gap: 15px;
+    height: 100%;
+}
+.search-contianerr {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    
+}
+
+.remove {
+    width: 20px;
+    height: 20px;
+    background-color: var.$grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: 1px solid var.$stroke;
+    justify-self: end;
+}
+.search {
+    background-color: black;
+    padding: 12.5px 15px;
+    display: flex;
+    gap: 25px;
+    border-radius: 7.5px;
+    border: 1px solid var.$stroke;
+    input {
+        font-family: "DM Sans", sans-serif;
+        background-color: transparent;
+        color: white;
+        border: none;
+        outline: none;
+        flex: 1;
+        &::placeholder {
+            color: white;
+        }
+    }
+}
+.songs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: scroll;
+    height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    .song {
+        display: flex;
+        padding: 5px 25px;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        .song-title {
+                
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .song-author {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .right {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .preview {
+            height: 50px;
+            width: 50px;
+            border-radius: 7.5px;
+        }
+    }
+}
+.search-list {
+    border-radius: 7.5px;
+    background-color: black;
+    overflow: hidden;
+    border: 1px solid var.$stroke;
+    .time {
+        justify-self: end;
+    }
+    .album-name {
+        justify-self: start;
+    }
+    .song-info {
+        display: grid;
+        grid-template-columns: 3fr 2fr 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        padding: 15px 25px;
+        align-items: center;
+        border-bottom: 1px solid var.$stroke;
+    }
+    .song {
+        display: grid;
+        grid-template-columns: 3fr 2fr 1fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 0px;
+        align-items: center;
+    }
+}
+
+.suggested-songs {
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var.$stroke;
+}

@@ -1,0 +1,21 @@
+
+
+
+button {
+    background-color: black;
+    color: white;
+    font-family: "DM Sans", sans-serif;
+    padding: 12.5px 25px;
+    border-radius: 50px;
+    border: 1px solid #12C64B;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.25s ease-out;
+    
+    &:hover {
+        cursor: pointer;
+        transition: 0.25s ease-in;
+        border: 1px solid white;
+    }
+}
