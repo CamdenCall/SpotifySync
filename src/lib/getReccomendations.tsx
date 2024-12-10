@@ -16,14 +16,14 @@ interface Song {
 }
 
 interface SpotifyRecommendationsProps {
-  token: string;
+  token: string | null;
   song: {
     name: string;
     artists: Array<{ name: string; id: string }>;
   };
 }
 
-async function getArtistGenres(artistId: string, token: string) {
+async function getArtistGenres(artistId: string, token: string | null) {
   const response = await fetch(`https://api.spotify.com/v1/artists/${artistId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -35,6 +35,7 @@ async function getArtistGenres(artistId: string, token: string) {
 
 const getRecommendations = async ({ token, song }: SpotifyRecommendationsProps): Promise<SpotifySearchResponse[]> => {
   const artistId = song.artists[0].id;
+  const songName = song.name
   const genres = await getArtistGenres(artistId, token);
   console.log(genres);
 
@@ -47,7 +48,7 @@ const getRecommendations = async ({ token, song }: SpotifyRecommendationsProps):
         Authorization: `Bearer ${token}`
       },
       params: {
-        q: `genre:${genre}`,
+        q: `genre:${genre} track:${songName}`,
         type: "track",
         limit: 12
       }

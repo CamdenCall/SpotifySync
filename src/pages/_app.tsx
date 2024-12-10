@@ -1,10 +1,10 @@
-import { TokenProvider } from '@/lib/TokenContext';
 import type { AppProps } from 'next/app';
+import { SongContextProvider, useSongContext } from '@/lib/UserContext' 
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <TokenProvider>
+    <SongContextProvider>
       <Component {...pageProps} />
-    </TokenProvider>
+    </SongContextProvider>
   );
 }

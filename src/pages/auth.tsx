@@ -5,16 +5,15 @@ import Nav  from '@/components/Nav/Nav'
 import LoginButton from "@/components/Login/Button";
 import Layout from "@/app/layout"
 import Token from "@/lib/token"
-import { useToken } from "@/lib/TokenContext"
+import { useSongContext } from '@/lib/UserContext';
+
 
 export default function Auth() {
   const router = useRouter();
-  const { setToken } = useToken()
+  const { token, setToken } = useSongContext();
 
   const getToken = async (code: string) => {
     const response = await Token(code)
-    console.log(response)
-    console.log(response.access_token)
     setToken(response.access_token);
     router.push("/")
   }

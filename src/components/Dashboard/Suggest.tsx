@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Image from 'next/image'
 import searchSpotify from '@/lib/searchSpotify';
-import { useToken } from '@/lib/TokenContext';
+import { useSongContext } from '@/lib/UserContext';
 import getRecommendations from "@/lib/getReccomendations";
 import "./Search.scss";
 import "@/styles/var.scss";
@@ -25,13 +25,13 @@ interface Song {
 }
 
 interface SuggestProps {
-    token: string;
     songs: Song[];
   }
 
   
   
-export default function Suggest({ token, songs }: SuggestProps) {
+export default function Suggest({songs }: SuggestProps) {
+    const { token } = useSongContext();
     return (
         <div className="search-contianer">
             <div className='search-list'>

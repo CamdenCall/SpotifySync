@@ -1,8 +1,8 @@
 import React, {use, useEffect, useState} from 'react';
 import Image from 'next/image'
 import searchSpotify from '@/lib/searchSpotify';
-import { useToken } from '@/lib/TokenContext';
 import getRecommendations from "@/lib/getReccomendations"
+import { useSongContext } from '@/lib/UserContext';
 import "./Playlist.scss"
 import "@/styles/var.scss"
 interface Token {
@@ -32,9 +32,10 @@ interface ReccomendSong {
 }
   
   
-export default function Playlist({token}:Token) {
+export default function Playlist() {
   const [songs, setSongs] = useState<Song[]>([]);
   const [reccomendSongs, setReccomendSongs] = useState<Song>();
+  const { token } = useSongContext();
     
   
   const formatData = (song: Song) => {
@@ -76,16 +77,6 @@ export default function Playlist({token}:Token) {
   }
 
 
-  const fetchReccomendations = async (updatedSongs: Song) => {
-    const { artists, tracks } = formatData(updatedSongs);
-    const recc = await getRecommendations({ token, artists, tracks });
-    console.log(recc);
-  };
-
-
-  const addReccomend = (song: Song) => {
-    fetchReccomendations(song); // Pass the updated state explicitly
-  };
   
 
   return (

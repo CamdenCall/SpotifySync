@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import searchSpotify from '@/lib/searchSpotify';
 import getRecommendations from '@/lib/getReccomendations';
+import { useSongContext } from '@/lib/UserContext';
 import './Search.scss';
 import Suggest from './Suggest';
 
-interface Token {
-  token: string;
-}
 interface SpotifyItem {
   tracks?: {
     items?: Array<Song>;
@@ -23,9 +21,9 @@ interface Song {
 }
 
 
-export default function Search({ token }: Token) {
+export default function Search() {
   const [songs, setSongs] = useState<Song[]>([]);
-  const [artists, setArtists] = useState<Song[]>([]);
+  const { token } = useSongContext();
   const [reccomendSongs, setReccomendSongs] = useState<Song[]>([]);
 
 
@@ -49,7 +47,6 @@ export default function Search({ token }: Token) {
     const flattenedTracks = allRecommendations.flatMap((response) => response.tracks?.items || []);
     if (flattenedTracks.length > 0) {
         setReccomendSongs(flattenedTracks);
-        console.log(flattenedTracks);
       } else {
         console.log('No tracks found');
       }
@@ -102,7 +99,7 @@ export default function Search({ token }: Token) {
                 </div>
             </div>
         </div>
-        <Suggest token={token} songs={reccomendSongs}/>
+        <Suggest songs={reccomendSongs}/>
     </div>
     
   );
