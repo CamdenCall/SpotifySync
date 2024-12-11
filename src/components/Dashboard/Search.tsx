@@ -18,6 +18,7 @@ interface Song {
   album: { name: string; images?: Array<{ url: string }> };
   artists: Array<{ name: string; id: string }>;
   duration_ms: number;
+  uri: string;
 }
 
 

@@ -48,7 +48,7 @@ const getRecommendations = async ({ token, song }: SpotifyRecommendationsProps):
         Authorization: `Bearer ${token}`
       },
       params: {
-        q: `genre:${genre} track:${songName}`,
+        q: `genre:${genre}`,
         type: "track",
         limit: 12
       }

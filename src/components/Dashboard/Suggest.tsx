@@ -3,6 +3,7 @@ import Image from 'next/image'
 import searchSpotify from '@/lib/searchSpotify';
 import { useSongContext } from '@/lib/UserContext';
 import getRecommendations from "@/lib/getReccomendations";
+import { addSong } from '@/lib/playlist';
 import "./Search.scss";
 import "@/styles/var.scss";
 interface SpotifyItem {
@@ -22,16 +23,27 @@ interface Song {
     album: { name: string; images?: Array<{ url: string}> };
     artists: Array<{ name: string, id: string }>;
     duration_ms: number;
+    uri: string
 }
 
 interface SuggestProps {
     songs: Song[];
   }
 
-  
-  
+
 export default function Suggest({songs }: SuggestProps) {
-    const { token } = useSongContext();
+    const { token, addPlaylistSong } = useSongContext();
+    const addSongButton = async (song: Song) => {
+        try {
+            // Pass the `songUri` to your `addSong` function
+            addPlaylistSong(song)
+            await addSong(token, song.uri);
+        } catch (error) {
+            console.error("Failed to add song:", error);
+        }
+    }
+    console.log(songs)
+      
     return (
         <div className="search-contianer">
             <div className='search-list'>
@@ -52,7 +64,7 @@ export default function Suggest({songs }: SuggestProps) {
                         </div>
                     </div>
                     <p className="album-name">{song.album.name}</p>
-                    <div className="remove">
+                    <div className="remove" onClick={() => addSongButton(song)}>
                         <img width={7.5} src="/add.svg" alt="remove" />
                     </div>
                     </div>

@@ -7,14 +7,15 @@ export interface Song {
   album: { name: string; images?: Array<{ url: string }> };
   artists: Array<{ name: string; id: string }>;
   duration_ms: number;
+  uri: string;
 }
 
 interface SongContextProps {
-  songs: Song[];
+  playlistSongs: Song[];
   token: string | null;
   loading: boolean;
-  addSong: (song: Song) => void;
-  removeSong: (id: string) => void;
+  addPlaylistSong: (song: Song) => void;
+  removePlaylistSong: (id: string) => void;
   clearSongs: () => void;
   setToken: (token: string) => void;
   clearToken: () => void;
@@ -25,12 +26,12 @@ const SongContext = createContext<SongContextProps | undefined>(undefined);
 export const SongContextProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [songs, setSongs] = useState<Song[]>([]);
+  const [playlistSongs, setSongs] = useState<Song[]>([]);
   const [token, setTokenState] = useState<string | null>(null);
 
-  const addSong = (song: Song) => setSongs((prev) => [...prev, song]);
+  const addPlaylistSong = (song: Song) => setSongs((prev) => [...prev, song]);
 
-  const removeSong = (id: string) =>
+  const removePlaylistSong = (id: string) =>
     setSongs((prev) => prev.filter((song) => song.id !== id));
 
   const clearSongs = () => setSongs([]);
@@ -60,7 +61,7 @@ export const SongContextProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <SongContext.Provider
-      value={{ songs, token, addSong, removeSong, clearSongs, setToken, clearToken, loading }}
+      value={{ playlistSongs, token, addPlaylistSong, removePlaylistSong, clearSongs, setToken, clearToken, loading }}
     >
       {children}
     </SongContext.Provider>

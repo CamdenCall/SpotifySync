@@ -13,7 +13,7 @@
 }
 
 .remove {
-    width: 20px;
+    min-width: 20px;
     height: 20px;
     background-color: var.$grey;
     display: flex;
@@ -22,6 +22,11 @@
     border-radius: 5px;
     border: 1px solid var.$stroke;
     justify-self: end;
+    cursor: pointer;
+
+    &:hover {
+        background-color: red;
+    }
 }
 .search {
     background-color: black;

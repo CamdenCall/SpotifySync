@@ -17,6 +17,7 @@
         padding: 12.5px 15px;
         max-height: 50px;
         flex: 1;
+        justify-content: space-between;
     }
 }
 .remove {
@@ -29,6 +30,7 @@
     border-radius: 5px;
     border: 1px solid var.$stroke;
     justify-self: end;
+    cursor: pointer;
 }
 .songs {
     display: flex;
